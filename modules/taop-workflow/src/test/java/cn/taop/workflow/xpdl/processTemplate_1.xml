@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflowProcess id="wp00001" name="工作流流程模板" type="00A">
+	<!-- 文本标注 -->
+	<note id="note_01" width="100" height="100" x="200" y="200">
+		这是一个流程测试模板，主要用来测试流程的XML配置文件的读取，以及XPDL的解析，此流程模拟请假流程
+	</note>
+
+	<!-- 流程变量 -->
+	<data id="data_01" size="32" array="false" type="SYS_USER" desc="请假人ID" name="leaveUser" displayName="请假人">
+		<![CDATA[<input type="hidden" id="data_01" name="leaveUser"/>]]>
+	</data>
+	<data id="data_02" size="" array="false" type="dateTime" desc="请假开始时间" name="leaveStart" displayName="请假开始时间">
+		<![CDATA[<input type="hidden" id="data_02" name="leaveStart"/>]]>
+	</data>
+	<data id="data_03" size="" array="false" type="dateTime" desc="请假结束时间" name="leaveEnd" displayName="请假结束时间">
+		<![CDATA[<input type="hidden" id="data_03" name="leaveEnd"/>]]>
+	</data>
+	<data id="data_04" size="3" array="false" type="text" desc="请假类型" name="leaveType" displayName="请假类型">
+		<![CDATA[<select id="data_04" name="leaveType">
+					<option id="1">病假</option>
+					<option id="2">事假</option>
+					<option id="3">婚假</option>
+					<option id="4">丧假</option>
+		</select>/>]]>
+	</data>
+	<data id="data_05" size="255" array="false" type="text" desc="请假事由" name="leaveReson" displayName="请假事由">
+		<![CDATA[<textarea id="data_05" name="leaveReson" cols="100" rows="10"></textarea>]]>
+	</data>
+	<data id="data_06" size="3" array="false" type="text" desc="审批结果" name="leaveApporve" displayName="审批结果">
+		<![CDATA[<select id="data_06" name="leaveApporve">
+					<option id="1">同意</option>
+					<option id="0">不同意</option>
+		</select>/>]]>
+	</data>
+	<data id="data_07" size="255" array="false" type="text" desc="审批意见" name="leaveOpinion" displayName="审批意见">
+		<![CDATA[<textarea id="data_07" name="leaveOpinion" cols="100" rows="10"></textarea>]]>
+	</data>
+
+	<action id="action_01" name="发送审批通知邮件" type="custom">
+		<![CDATA[System.out.println("这是一个发送审批的动作测试");]]>
+	</action>
+
+	<actor id="actor_01" name="user_00001" type="user" />
+
+	<activities>
+		<activity id="a_01" name="开始" desc="填写请假单" type="start" />
+		<activity id="a_02" name="填写请假单" desc="填写请假单" type="normal" />
+		<activity id="a_03" name="部门审批" desc="部门审批" type="normal" />
+		<activity id="a_04" name="综合部归档" desc="综合部归档" type="normal" />
+		<activity id="a_05" name="结束" desc="结束" type="end" />
+	</activities>
+
+	<transitions>
+		<transition id="t_01" from="a_01" to="a_02" />
+		<transition id="t_02" from="a_02" to="a_03" />
+		<transition id="t_03" from="a_03" to="a_04" />
+		<transition id="t_04" from="a_04" to="a_05" />
+	</transitions>
+</workflowProcess>

@@ -1,0 +1,424 @@
+<processes>
+	<process orgId="" importClass="" index="" sortIndex="0" flowType="workflow" single="false" y="0" x="0" type="paper"
+		desc="" name="总裁办收文流程" id="zcbsw_process">
+		<data size="" length="" array="false" type="Int" desc="" name="当前批办人序号" id="index" />
+		<data size="" length="" array="false" type="Text" desc="" name="正文内容" id="text" />
+		<data size="" length="" array="false" type="Text" desc="" name="当前批办人" id="leader2" />
+		<data size="" length="" array="false" type="Text" desc="可多人，分号隔开" name="阅示人" id="viewers" />
+		<data size="" length="" array="false" type="SingleSelect" desc="" name="办文还是阅示" id="type" />
+		<data size="" length="" array="false" type="Text" desc="" name="批示的领导" id="leaders" />
+		<data size="" length="" array="false" type="Text" desc="" name="登记表内容" id="register" />
+		<data size="" length="" array="false" type="Text" desc="" name="批办的领导" id="leaders2" />
+		<data size="" length="" array="false" type="Text" desc="分办人可以有多人" name="分办或转办人" id="otherHandlers" />
+		<data size="" length="" array="false" type="Text" desc="" name="拟办意见" id="todoNote" />
+		<data size="" length="" array="false" type="Int" desc="" name="办理总人数" id="num" />
+		<data size="" length="" array="false" type="Text" desc="" name="附件内容" id="attach" />
+		<data size="" length="" array="false" type="Text" desc="只能输入一人" name="主办人" id="mainHandler" />
+		<data size="" length="" array="false" type="Text" desc="" name="承办人" id="performer" />
+		<data size="" length="" array="false" type="Text" desc="" name="转办人" id="otherHandler2" />
+		<data size="" length="" array="false" type="LongText" desc="" name="已有办理意见" id="note" />
+		<actions>
+			<action isErrorOut="false" name="数据初始化" eventId="3">type.add(&quot;办文&quot;, &quot;banwen&quot;);
+				type.add(&quot;阅示&quot;, &quot;yueshi&quot;);
+				type.selectedValue = &quot;banwen&quot;;
+            </action>
+		</actions>
+		<note italic="false" bold="false" border="false" size="13" font="Marlett" borderColor="0x000000" color="0x440000"
+			height="22" width="400" y="452" x="200" type="15" desc="" name="本流程展现如下特性： 1、通过变量指定一到多个参与者；2、同时启动多个子流程；3、子流程数目由变量指定"
+			id="Note_0" />
+		<node sortIndex="0" msgStart="false" timeStart="false" humenStart="false" single="false" returnPageTemplate="_doFormReturn"
+			startPageTemplate="_doForm" y="400" x="600" type="4" desc="" name="结束" id="End" />
+		<node sortIndex="0" msgStart="false" timeStart="false" humenStart="true" single="false" returnPageTemplate="_doFormReturn"
+			startPageTemplate="_doForm" y="150" x="100" type="8" desc="" name="开始总裁办收文流程" id="Start">
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="in"
+				canBeNull="true" id="register" />
+			<actions>
+				<action isErrorOut="false" name="初始化数据" eventId="0">note = &quot;&quot;;
+                </action>
+			</actions>
+		</node>
+		<node sortIndex="0" msgStart="false" timeStart="false" humenStart="false" single="false" returnPageTemplate="_doFormReturn"
+			startPageTemplate="_doForm" y="50" x="200" type="4" desc="" name="结束" id="EndNode_1" />
+		<node sortIndex="0" msgStart="false" timeStart="false" humenStart="false" single="false" returnPageTemplate="_doFormReturn"
+			startPageTemplate="_doForm" y="50" x="750" type="4" desc="" name="结束" id="EndNode_0" />
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="150" x="200" type="6" desc="" name="来文登记" id="HumenNode_0">
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="inout"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="in"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="in"
+				canBeNull="true" id="attach" />
+			<actor condition="1" partyIdName="总裁办文件综合员 [zcb_wjzhy]" partyTypeName="公文处理" partyId="zcb_wjzhy" partyType="gf"
+				isRepeat="false" includeChild="false" const="false" role="sad" />
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="150" x="300" type="6" desc="" name="拟办" id="HumenNode_1">
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="inout"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="inout"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="inout"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="拟办意见-todoNote" type="in"
+				canBeNull="true" id="todoNote" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="办文还是阅示-type" type="in"
+				canBeNull="true" id="type" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="主办人-mainHandler" type="in"
+				canBeNull="true" id="mainHandler" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="阅示人-viewers" type="in"
+				canBeNull="true" id="viewers" />
+			<actor condition="1" partyIdName="总裁办领导 [zcb_ld]" partyTypeName="公文处理" partyId="zcb_ld" partyType="gf"
+				isRepeat="false" includeChild="false" const="false" role="sad" />
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="250" x="300" type="6" desc="" name="主办" id="HumenNode_2">
+			<data size="" length="" array="false" type="Text" desc="" name="我的办理意见" id="myNote" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="办理意见-note" type="out"
+				canBeNull="true" id="note" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="分办或转办人-otherHandlers"
+				type="in" canBeNull="true" id="otherHandlers" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="我的办理意见-myNote" type="in"
+				canBeNull="true" id="myNote" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="批示的领导-leaders" type="in"
+				canBeNull="true" id="leaders" />
+			<actor condition="1" partyIdName="mainHandler" partyTypeName="个人" partyId="mainHandler" partyType="user"
+				isRepeat="false" includeChild="false" const="true" role="sad" />
+			<actions>
+				<action isErrorOut="false" name="记录办理意见" eventId="8">if ((myNote != null) &amp;&amp;
+					!myNote.trim().equals(&quot;&quot;)) {
+					note += (myNote + &quot; &quot; + _event.finisher + &quot;\r\n&quot;);
+					}
+					if (_event.linkId.equals(&quot;fenban&quot;)) {
+					String[] strs = otherHandlers.split(&quot;;&quot;);
+					num = strs.length;
+					}
+                </action>
+				<action isErrorOut="false" name="" eventId="7">otherHandlers = &quot;&quot;;
+                </action>
+			</actions>
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="250" x="100" type="6" desc="" name="拟稿部门补充材料" id="HumenNode_3_0">
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="in"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="in"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="in"
+				canBeNull="true" id="attach" />
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="350" x="600" type="6" desc="" name="归档" id="HumenNode_12">
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="已有办理意见-note" type="out"
+				canBeNull="true" id="note" />
+			<actor condition="1" partyIdName="档案管理员 [dagly]" partyTypeName="公文处理" partyId="dagly" partyType="gf" isRepeat="false"
+				includeChild="false" const="false" role="sad" />
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="150" x="750" type="6" desc="" name="承办" id="HumenNode_11">
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="办理意见-note" type="out"
+				canBeNull="true" id="note" />
+			<actor condition="1" partyIdName="performer" partyTypeName="个人" partyId="performer" partyType="user" isRepeat="false"
+				includeChild="false" const="true" role="sad" />
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="400" x="300" type="6" desc="" name="转办" id="HumenNode_4_0">
+			<data size="" length="" array="false" type="Text" desc="" name="我的意见" id="myNote" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="办理意见-note" type="out"
+				canBeNull="true" id="note" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="我的意见-myNote" type="in"
+				canBeNull="true" id="myNote" />
+			<actor condition="1" partyIdName="otherHandlers" partyTypeName="个人" partyId="otherHandlers" partyType="user"
+				isRepeat="false" includeChild="false" const="true" role="sad" />
+			<actions>
+				<action isErrorOut="false" name="" eventId="8">if ((myNote != null) &amp;&amp;
+					!myNote.trim().equals(&quot;&quot;)) {
+					note += (myNote + &quot; &quot; + _event.finisher + &quot;\r\n&quot;);
+					}
+                </action>
+			</actions>
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="350" x="750" type="6" desc="" name="批办" id="HumenNode_10">
+			<data size="" length="" array="false" type="Text" desc="" name="我的意见" id="myNote" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="办理意见-note" type="out"
+				canBeNull="true" id="note" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="我的意见-myNote" type="in"
+				canBeNull="true" id="myNote" />
+			<actor condition="1" partyIdName="leader2" partyTypeName="个人" partyId="leader2" partyType="user" isRepeat="false"
+				includeChild="false" const="true" role="sad" />
+			<actions>
+				<action isErrorOut="false" name="" eventId="8">if ((myNote != null) &amp;&amp;
+					!myNote.trim().equals(&quot;&quot;)) {
+					note += (myNote + &quot; &quot; + _event.finisher + &quot;\r\n&quot;);
+					}
+					String[] strs = leaders2.split(&quot;;&quot;);
+					index++;
+					if (index &lt; num) {
+					leader2 = strs[index];
+					}
+                </action>
+			</actions>
+		</node>
+		<node subCaseNumIsVar="true" subCaseNum="1" subCaseNumVar="num" status="Start" subProcessName="分办子流程"
+			subProcessId="fenban_process" domain="Engine_1" single="false" y="400" x="100" type="12" desc="" name="分办子流程" id="SubNode_0">
+			<param_data dataFieldId="register" paramType="in" paramId="register" />
+			<param_data dataFieldId="otherHandlers" paramType="in" paramId="otherHandlers" />
+			<param_data dataFieldId="text" paramType="in" paramId="text" />
+			<param_data dataFieldId="attach" paramType="in" paramId="attach" />
+			<param_data dataFieldId="note" paramType="in" paramId="note" />
+			<return_param_data endnode="End" />
+			<return_param_data endnode="EndNode_1" />
+		</node>
+		<node single="false" y="400" x="750" type="3" desc="" name="批办完成？" id="ConNode_1" />
+		<node single="false" y="150" x="600" type="3" desc="" name="有新加的阅示人？" id="ConNode_2" />
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="250" x="600" type="6" desc="" name="返回总裁办公室" id="HumenNode_9">
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="办理意见-note" type="out"
+				canBeNull="true" id="note" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="批办的领导-leaders2" type="in"
+				canBeNull="true" id="leaders2" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="承办人-performer" type="in"
+				canBeNull="true" id="performer" />
+			<actor condition="1" partyIdName="总裁办文件综合员 [zcb_wjzhy]" partyTypeName="公文处理" partyId="zcb_wjzhy" partyType="gf"
+				isRepeat="false" includeChild="false" const="false" role="sad" />
+			<actions>
+				<action isErrorOut="false" name="" eventId="1">if (_event.linkId.equals(&quot;piban&quot;)) {
+					String[] strs = leaders2.split(&quot;;&quot;);
+					num = strs.length;
+					index = 0;
+					leader2 = strs[index];
+					}
+                </action>
+				<action isErrorOut="false" name="" eventId="7">leaders2 = &quot;&quot;;
+					performer = &quot;&quot;;
+					num = 0;
+                </action>
+			</actions>
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="true" task_var_value="" task_var="false"
+			task_num_value="1" task_num="false" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="150" x="500" type="6" desc="" name="阅示" id="HumenNode_8">
+			<data size="" length="" array="false" type="Text" desc="" name="添加阅示人" id="newViewers" />
+			<data size="" length="" array="false" type="Text" desc="" name="我的意见" id="myNote" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="添加阅示人-newViewers" type="in"
+				canBeNull="true" id="newViewers" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="已有办理意见-note" type="in"
+				canBeNull="true" id="note" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="我的意见-myNote" type="in"
+				canBeNull="true" id="myNote" />
+			<actor condition="1" partyIdName="viewers" partyTypeName="个人" partyId="viewers" partyType="user" isRepeat="false"
+				includeChild="false" const="true" role="sad" />
+			<actions>
+				<action isErrorOut="false" name="" eventId="17">System.out.println(viewers);
+					viewers = null;
+                </action>
+				<action isErrorOut="false" name="" eventId="8">if ((newViewers != null) &amp;&amp;
+					!newViewers.trim().equals(&quot;&quot;)) {
+					if (viewers == null) {
+					viewers = newViewers;
+					} else {
+					viewers += (&quot;;&quot; + newViewers);
+					}
+					}
+					System.out.println(viewers);
+					if ((myNote != null) &amp;&amp; !myNote.trim().equals(&quot;&quot;)) {
+					note += (myNote + &quot; &quot; + _event.finisher + &quot;\r\n&quot;);
+					}
+                </action>
+			</actions>
+		</node>
+		<node single="false" y="150" x="400" type="3" desc="" name="办文？" id="ConNode_0" />
+		<node review="false" delegate="false" entrust="false" task_actor="true" task_var_value="" task_var="false"
+			task_num_value="1" task_num="false" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="350" x="500" type="6" desc="" name="公司领导批示" id="HumenNode_7">
+			<data size="" length="" array="false" type="Text" desc="" name="我的意见" id="myNote" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="办理意见-note" type="out"
+				canBeNull="true" id="note" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="我的意见-myNote" type="in"
+				canBeNull="true" id="myNote" />
+			<actor condition="1" partyIdName="leaders" partyTypeName="个人" partyId="leaders" partyType="user" isRepeat="false"
+				includeChild="false" const="true" role="sad" />
+			<actions>
+				<action isErrorOut="false" name="" eventId="8">if ((myNote != null) &amp;&amp;
+					!myNote.trim().equals(&quot;&quot;)) {
+					note += (myNote + &quot; &quot; + _event.finisher + &quot;\r\n&quot;);
+					}
+                </action>
+			</actions>
+		</node>
+		<node review="false" delegate="false" entrust="false" task_actor="false" task_var_value="" task_var="false"
+			task_num_value="1" task_num="true" can_return="false" can_assign="false" claim="false" assign="false" auto="true"
+			minute="0" hour="0" day="0" level="3" finishNum2="2" finishNum="0" UIType="form" message2="" message1="" single="false"
+			returnPageTemplate="_doFormReturn" startPageTemplate="_doForm" y="350" x="400" type="6" desc="" name="总裁办公室主任转发" id="HumenNode_6">
+			<data size="" length="" array="false" type="Text" desc="" name="我的意见" id="myNote" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="登记表内容-register" type="out"
+				canBeNull="true" id="register" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="正文内容-text" type="out"
+				canBeNull="true" id="text" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="附件内容-attach" type="out"
+				canBeNull="true" id="attach" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="办理意见-note" type="out"
+				canBeNull="true" id="note" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="批示的领导-leaders" type="inout"
+				canBeNull="true" id="leaders" />
+			<parameter selectIndexType="" visible="true" positionId="" dataType="data" name="我的意见-myNote" type="in"
+				canBeNull="true" id="myNote" />
+			<actor condition="1" partyIdName="总裁办主任 [zcb_zr]" partyTypeName="公文处理" partyId="zcb_zr" partyType="gf"
+				isRepeat="false" includeChild="false" const="false" role="sad" />
+			<actions>
+				<action isErrorOut="false" name="" eventId="8">if ((myNote != null) &amp;&amp;
+					!myNote.trim().equals(&quot;&quot;)) {
+					note += (myNote + &quot; &quot; + _event.finisher + &quot;\r\n&quot;);
+					}
+                </action>
+			</actions>
+		</node>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0" to="SubNode_0"
+			from="HumenNode_2" type="11" desc="" name="分办" id="fenban" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_2" from="HumenNode_4_0" type="11" desc="" name="" id="Link_23">
+			<bend y="400" x="350" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_2" from="HumenNode_3_0" type="11" desc="" name="" id="Link_24" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="1"
+			to="HumenNode_4_0" from="HumenNode_2" type="11" desc="" name="转办" id="Link_22" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0" to="EndNode_1"
+			from="HumenNode_0" type="11" desc="" name="退回" id="Link_27" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="2"
+			to="HumenNode_3_0" from="HumenNode_2" type="11" desc="" name="补充材料" id="Link_25">
+			<bend y="200" x="100" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0" to="EndNode_0"
+			from="HumenNode_11" type="11" desc="" name="转批复" id="Link_26">
+			<bend y="100" x="750" />
+		</link>
+		<link condition="index&lt;num" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false"
+			sortIndex="0" to="HumenNode_10" from="ConNode_1" type="11" desc="" name="下一领导批办" id="Link_29">
+			<bend y="400" x="800" />
+			<bend y="350" x="800" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_7" from="HumenNode_6" type="11" desc="" name="" id="Link_9" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="4"
+			to="HumenNode_6" from="HumenNode_2" type="11" desc="" name="领导批示" id="Link_8">
+			<bend y="300" x="350" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_2" from="SubNode_0" type="11" desc="" name="" id="Link_19">
+			<bend y="400" x="200" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_1" from="HumenNode_0" type="11" desc="" name="提交" id="Link_1" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0" to="End"
+			from="HumenNode_12" type="11" desc="" name="" id="Link_18" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0" to="ConNode_0"
+			from="HumenNode_1" type="11" desc="" name="" id="Link_2" />
+		<link condition="type.selectedValue.equals(&quot;banwen&quot;)" noShowName="false" noAutoCreateButton="false"
+			inputDataCanBeNull="false" sortIndex="0" to="HumenNode_2" from="ConNode_0" type="11" desc="" name="是" id="Link_3" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_9" from="ConNode_1" type="11" desc="" name="完成" id="Link_30">
+			<bend y="400" x="700" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_8" from="ConNode_0" type="11" desc="" name="否" id="Link_4" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_9" from="ConNode_2" type="11" desc="" name="无" id="Link_31" />
+		<link condition="viewers!=null&amp;&amp; !viewers.equals(&quot;&quot;)" noShowName="false" noAutoCreateButton="false"
+			inputDataCanBeNull="false" sortIndex="0" to="HumenNode_8" from="ConNode_2" type="11" desc="" name="有" id="Link_32">
+			<bend y="50" x="600" />
+			<bend y="50" x="500" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_9" from="HumenNode_11" type="11" desc="" name="返回总裁办" id="Link_15" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_11" from="HumenNode_9" type="11" desc="" name="转承办" id="Link_14">
+			<bend y="250" x="750" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0" to="ConNode_1"
+			from="HumenNode_10" type="11" desc="" name="" id="Link_17" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_0" from="Start" type="11" desc="" name="" id="Link_0" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="5"
+			to="HumenNode_9" from="HumenNode_2" type="11" desc="" name="返回总裁办" id="Link_11">
+			<bend y="250" x="400" />
+		</link>
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_9" from="HumenNode_7" type="11" desc="" name="" id="Link_10" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_12" from="HumenNode_9" type="11" desc="" name="归档" id="Link_13" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0" to="ConNode_2"
+			from="HumenNode_8" type="11" desc="" name="" id="Link_12" />
+		<link condition="" noShowName="false" noAutoCreateButton="false" inputDataCanBeNull="false" sortIndex="0"
+			to="HumenNode_10" from="HumenNode_9" type="11" desc="" name="提交批办" id="piban" />
+	</process>
+</processes>

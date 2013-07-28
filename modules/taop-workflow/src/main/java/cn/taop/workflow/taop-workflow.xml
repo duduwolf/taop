@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taop-workflow>
+	<constant>
+		<workflow-categories>
+			<workflow-category name="doc" value="公文办理"/>
+			<workflow-category name="coWork" value="协同工作"/>
+		</workflow-categories>
+		
+		<default-loader name="configuration" value="cn.taop.workflow.config.XMLConfigurationLoader" />
+	</constant>
+</taop-workflow>
